@@ -1,0 +1,13 @@
+src/
+├── index.ts              ← apenas o app.listen e registro das rotas
+├── routes/
+│   └── pdfRoutes.ts      ← define os endpoints de API (Express.Router)
+├── controllers/
+│   └── pdfController.ts  ← define a lógica de cada rota (listar, baixar, etc)
+├── services/
+│   ├── authService.ts    ← gera o token
+│   └── graphService.ts   ← encapsula chamadas ao Graph (listar, baixar)
+├── utils/
+│   └── logger.ts         ← logs, erros, etc (opcional)
+├── config/
+│   └── env.ts            ← lê variáveis do `.env`

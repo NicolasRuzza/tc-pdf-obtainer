@@ -12,6 +12,6 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use('/api/pdf', pdfRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-  console.log(`🔎 Swagger disponível em http://localhost:${PORT}/api/docs`);
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`🔎 Swagger disponível em http://localhost:${PORT}/api/docs`);
 });

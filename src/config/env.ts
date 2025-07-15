@@ -16,10 +16,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const {
-  TENANT_ID,
-  CLIENT_ID,
-  CLIENT_SECRET,
-  SITE_URL,
-  DRIVE_ID,
-  PORT
+    TENANT_ID,
+    CLIENT_ID,
+    CLIENT_SECRET,
+    SITE_URL,
+    DRIVE_ID,
+    PORT
 } = process.env;

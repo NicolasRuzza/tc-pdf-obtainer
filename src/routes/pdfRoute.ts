@@ -1,5 +1,5 @@
-import express from 'express';
-import { listarConteudo, baixarPdf, listarPorId } from '../controllers/pdfController.ts';
+import express from "express";
+import { listarConteudo, baixarPdf, listarPorId } from "../controllers/pdfController.ts";
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ const router = express.Router();
  *         description: Erro ao buscar arquivos
  */
 
-router.get('/listar', listarConteudo);
+router.get("/listar", listarConteudo);
 
 /**
  * @swagger
@@ -66,7 +66,7 @@ router.get('/listar', listarConteudo);
  *         description: Erro ao buscar conteúdo
  */
 
-router.get('/listar-por-id', listarPorId);
+router.get("/listar-por-id", listarPorId);
 
 /**
  * @swagger
@@ -94,6 +94,6 @@ router.get('/listar-por-id', listarPorId);
  *       500:
  *         description: Erro no download
  */
-router.get('/baixar', baixarPdf);
+router.get("/baixar", baixarPdf);
 
 export default router;

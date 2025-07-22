@@ -1,5 +1,5 @@
-import type { Request, Response } from 'express';
-import { getDriveItems, getItemsInFolderById, getPdfById } from '../services/graphService.ts';
+import type { Request, Response } from "express";
+import { getDriveItems, getItemsInFolderById, getPdfById } from "../services/graphService.ts";
 
 export async function listarConteudo(req: Request, res: Response) {
     try {
@@ -7,15 +7,15 @@ export async function listarConteudo(req: Request, res: Response) {
         res.json(arquivos);
     }
     catch (err: any) {
-        res.status(500).json({ error: 'Erro ao listar arquivos', details: err.message });
+        res.status(500).json({ error: "Erro ao listar arquivos", details: err.message });
     }
 }
 
 export async function listarPorId(req: Request, res: Response): Promise<void> {
     const { id } = req.query;
   
-    if (!id || typeof id !== 'string') {
-        res.status(400).json({ error: 'ID da pasta é obrigatório' });
+    if (!id || typeof id !== "string") {
+        res.status(400).json({ error: "ID da pasta é obrigatório" });
         return;
     }
 
@@ -24,16 +24,16 @@ export async function listarPorId(req: Request, res: Response): Promise<void> {
         res.json(itens);
     }
     catch (err: any) {
-        console.error('Erro ao listar itens por ID:', err.message);
-        res.status(500).json({ error: 'Erro ao buscar arquivos da pasta' });
+        console.error("Erro ao listar itens por ID:", err.message);
+        res.status(500).json({ error: "Erro ao buscar arquivos da pasta" });
     }
 }
 
 export async function baixarPdf(req: Request, res: Response): Promise<void> {
     const { id } = req.query;
 
-    if (!id || typeof id !== 'string') {
-        res.status(400).json({ error: 'ID é obrigatório' });
+    if (!id || typeof id !== "string") {
+        res.status(400).json({ error: "ID é obrigatório" });
         return;
     }
 
@@ -42,16 +42,16 @@ export async function baixarPdf(req: Request, res: Response): Promise<void> {
         
         res.status(200).json({
             content: base64Pdf,
-            mimeType: 'application/pdf',
-            encoding: 'base64',
+            mimeType: "application/pdf",
+            encoding: "base64",
             filename: `${id}.pdf`
         });
     }
     catch (err: any) {
-        console.error('Erro ao baixar PDF:', err.message || err);
+        console.error("Erro ao baixar PDF:", err.message || err);
         res.status(500).json({
-            error: 'Erro ao baixar PDF',
-            details: err.message || 'Erro desconhecido'
+            error: "Erro ao baixar PDF",
+            details: err.message || "Erro desconhecido"
         });
     }
 }

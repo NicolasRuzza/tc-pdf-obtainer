@@ -7,7 +7,6 @@ import { openapiSpecification } from "./config/swagger.ts";
 
 const app = express();
 app.use(cors({
-    origin: env.FRONTEND_URL,
     methods: ["GET"],
 }));
 app.use(express.json());

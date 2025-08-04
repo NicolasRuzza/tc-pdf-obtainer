@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { getDriveItems, getItemsInFolderById, getPdfById } from "../services/graphService.ts";
 
-export async function listarConteudo(req: Request, res: Response) {
+export async function listarConteudoDrive(req: Request, res: Response) {
     try {
         const arquivos = await getDriveItems();
         res.json(arquivos);
@@ -11,7 +11,7 @@ export async function listarConteudo(req: Request, res: Response) {
     }
 }
 
-export async function listarPorId(req: Request, res: Response): Promise<void> {
+export async function listarPastaPorId(req: Request, res: Response): Promise<void> {
     const { id } = req.query;
   
     if (!id || typeof id !== "string") {
@@ -26,6 +26,38 @@ export async function listarPorId(req: Request, res: Response): Promise<void> {
     catch (err: any) {
         console.error("Erro ao listar itens por ID:", err.message);
         res.status(500).json({ error: "Erro ao buscar arquivos da pasta" });
+    }
+}
+
+export async function listarPdfsNaPastaPorId(req: Request, res: Response): Promise<void> {
+    const { id } = req.query;
+
+    if (!id || typeof id !== "string") {
+        res.status(400).json({ error: "ID da pasta é obrigatório" });
+        return;
+    }
+
+    try {
+        const itens = await getItemsInFolderById(id);
+
+        const pdfs = itens
+            .filter((item: any) => item.file?.mimeType === "application/pdf")
+            .map((item: any) => ({
+                id: item.id,
+                name: item.name,
+                size: item.size,
+                lastModifiedDateTime: item.lastModifiedDateTime
+            }))
+        ;
+
+        res.json(pdfs);
+    }
+    catch (err: any) {
+        console.error("Erro ao listar PDFs:", err.message || err);
+        res.status(500).json({
+            error: "Erro ao buscar arquivos PDF da pasta",
+            details: err.message || "Erro desconhecido"
+        });
     }
 }
 

@@ -31,11 +31,11 @@ export async function getItemsInFolderById(folderId: string) {
     return res.data.value;
 }
 
-export async function getPdfById(id: string) {
+export async function getPdfById(pdfId: string) {
     const token = await getToken();
 
     const resRedirect = await axios.get(
-        `https://graph.microsoft.com/v1.0/drives/${env.DRIVE_ID}/items/${id}/content`,
+        `https://graph.microsoft.com/v1.0/drives/${env.DRIVE_ID}/items/${pdfId}/content`,
         {
             headers: { Authorization: `Bearer ${token}` },
             maxRedirects: 0,

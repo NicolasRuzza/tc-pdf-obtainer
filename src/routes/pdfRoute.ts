@@ -1,5 +1,10 @@
 import express from "express";
-import { listarConteudo, baixarPdf, listarPorId } from "../controllers/pdfController.ts";
+import { 
+    listarConteudoDrive, 
+    baixarPdf, 
+    listarPastaPorId,
+    listarPdfsNaPastaPorId,
+} from "../controllers/pdfController.ts";
 
 const router = express.Router();
 
@@ -23,7 +28,7 @@ const router = express.Router();
  *         description: Erro ao buscar arquivos
  */
 
-router.get("/listar", listarConteudo);
+router.get("/listar", listarConteudoDrive);
 
 /**
  * @swagger
@@ -66,11 +71,51 @@ router.get("/listar", listarConteudo);
  *         description: Erro ao buscar conteúdo
  */
 
-router.get("/listar-por-id", listarPorId);
+router.get("/listar-por-id", listarPastaPorId);
 
 /**
  * @swagger
- * /api/pdf/baixar:
+ * /api/pdf/listar-pdfs:
+ *   get:
+ *     summary: Lista apenas os arquivos PDF contidos em uma pasta do SharePoint
+ *     tags:
+ *       - PDF
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID da pasta do SharePoint
+ *     responses:
+ *       200:
+ *         description: Lista de arquivos PDF encontrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   size:
+ *                     type: integer
+ *                   lastModifiedDateTime:
+ *                     type: string
+ *                     format: date-time
+ *       400:
+ *         description: ID da pasta não fornecido
+ *       500:
+ *         description: Erro interno ao buscar PDFs
+ */
+router.get("/listar-pdfs", listarPdfsNaPastaPorId);
+
+/**
+ * @swagger
+ * /api/pdf/baixar-pdf:
  *   get:
  *     summary: Baixa o PDF pelo ID
  *     tags: [PDF]
@@ -94,6 +139,6 @@ router.get("/listar-por-id", listarPorId);
  *       500:
  *         description: Erro no download
  */
-router.get("/baixar", baixarPdf);
+router.get("/baixar-pdf", baixarPdf);
 
 export default router;

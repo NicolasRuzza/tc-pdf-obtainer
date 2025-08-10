@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getDriveItems, getItemsInFolderById, getPdfById } from "../services/graphService.ts";
+import { getDriveItems, getItemsInFolderById, getPdfById } from "../services/graphService.js";
 
 export async function listarConteudoDrive(req: Request, res: Response) {
     try {

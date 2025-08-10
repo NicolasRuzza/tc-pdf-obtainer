@@ -4,7 +4,7 @@ import {
     baixarPdf, 
     listarPastaPorId,
     listarPdfsNaPastaPorId,
-} from "../controllers/pdfController.ts";
+} from "../controllers/pdfController.js";
 
 const router = express.Router();
 

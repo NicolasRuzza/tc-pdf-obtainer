@@ -1,7 +1,7 @@
 import axios from "axios";
 import axiosRetry from "axios-retry";
-import { getToken } from "./authService.ts";
-import { env } from "../config/env.ts";
+import { getToken } from "./authService.js";
+import { env } from "../config/env.js";
 
 axiosRetry(axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
 

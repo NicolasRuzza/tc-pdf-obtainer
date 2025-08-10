@@ -1,5 +1,11 @@
-import { env } from "../config/env.ts";
+import { env } from "../config/env.js";
 import swaggerJSDoc from "swagger-jsdoc";
+
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const swaggerDefinition = {
     openapi: "3.0.0",
@@ -16,7 +22,7 @@ const swaggerDefinition = {
 
 const swaggerOptions = {
     definition: swaggerDefinition,
-    apis: ["./src/routes/*.ts"],   // Caminho dos arquivos com anotações JSDoc
+    apis: [path.join(__dirname, "../routes/pdfRoute.*")],   // Caminho dos arquivos com anotações JSDoc
 };
 
 export const openapiSpecification = swaggerJSDoc(swaggerOptions);

@@ -15,7 +15,7 @@ const swaggerDefinition = {
         description: "Documentação da API que lista, obtém e retorna PDFs armazenados no SharePoint."
     },
     servers: [{
-        url: `http://localhost:${env.PORT}`,
+        url: `http://${env.IP_VM}:${env.PORT}`,
         description: "Servidor local"
     }],
 };

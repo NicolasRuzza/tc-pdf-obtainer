@@ -6,9 +6,11 @@ import swaggerUi from "swagger-ui-express";
 import { openapiSpecification } from "./config/swagger.js";
 
 const app = express();
-app.use(cors({
-    methods: ["GET"],
-}));
+app.use(
+    cors({
+        methods: ["GET"],
+    })
+);
 
 app.use(express.json());
 
@@ -17,6 +19,6 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use("/api/pdf", pdfRoutes);
 
 app.listen(env.PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${env.PORT}/api/pdf`);
-    console.log(`🔎 Swagger disponível em http://localhost:${env.PORT}/api/docs`);
+    console.log(`Servidor rodando em http://${env.IP_VM}:${env.PORT}/api/pdf`);
+    console.log(`🔎 Swagger disponível em http://${env.IP_VM}:${env.PORT}/api/docs`);
 });

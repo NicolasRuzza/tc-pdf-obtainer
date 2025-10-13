@@ -8,7 +8,7 @@ const envSchema = z.object({
     SITE_URL: z.string(),
     DRIVE_ID: z.string(),
     PORT: z.coerce.number().default(3000),
-    FRONTEND_URL: z.string().url()
+    IP_VM: z.string().default("localhost")
 });
 
 export const env = envSchema.parse(process.env);
